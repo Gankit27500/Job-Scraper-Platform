@@ -4,6 +4,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.api.v1.api import api_router
 from app.core.config import settings
+from app.core.database import Base, engine
+from app.models.user import User
+from app.models.profile import Profile
+from app.models.job import Job
+from app.models.application import Application
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
